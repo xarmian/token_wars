@@ -5,8 +5,7 @@ import * as database from './database.js';
 let filename = process.argv[2];
 
 if (typeof filename == 'undefined') {
-    console.log('Please provide a filename');
-    process.exit(1);
+    filename = 'tokenWars.db';
 }
 
 const db = database.initDB(filename);

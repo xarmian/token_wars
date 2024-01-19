@@ -4,18 +4,17 @@ import algosdk from 'algosdk';
 import * as database from './database.js';
 import Contract from 'arc200js';
 
-let filename = process.argv[2];
+let filename = process.argv[3];
 
 if (typeof filename == 'undefined') {
-    console.log('Please provide a filename');
-    process.exit(1);
+    filename = 'tokenWars.db';
 }
 
 const db = database.initDB(filename);
 const algodClient = new algosdk.Algodv2("", "https://testnet-api.voi.nodly.io", 443);
 const indexerClient = new algosdk.Indexer("", "https://testnet-idx.voi.nodly.io", 443);
 
-let assetId = Number(process.argv[3]);
+let assetId = Number(process.argv[2]);
 let contract = new Contract(assetId, algodClient, indexerClient);
 
 let resp = await contract.getMetadata();
