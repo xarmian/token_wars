@@ -9,7 +9,7 @@ export const createTables = async (db) => {
     await db.exec(`CREATE TABLE IF NOT EXISTS transactions (
             transaction_id TEXT PRIMARY KEY,
             token_id INTEGER,
-            amount INTEGER,
+            amount TEXT,
             from_wallet TEXT,
             to_wallet TEXT,
             from_balance UNSIGNED INTEGER,
@@ -54,7 +54,7 @@ export const createTables = async (db) => {
 export const writeTransaction = (db, transaction) => {
     const stmt = db.prepare(`INSERT OR IGNORE INTO transactions (transaction_id, token_id, amount, from_wallet, to_wallet, from_balance, to_balance, block, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    stmt.run(transaction.transaction_id, transaction.token_id, transaction.amount, transaction.from_wallet, transaction.to_wallet, transaction.from_balance, transaction.to_balance, transaction.block, transaction.timestamp);
+    stmt.run(transaction.transaction_id, transaction.token_id, String(transaction.amount), transaction.from_wallet, transaction.to_wallet, transaction.from_balance, transaction.to_balance, transaction.block, transaction.timestamp);
 }
 
 export const writeToken = (db, token) => {
