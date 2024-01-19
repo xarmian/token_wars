@@ -1,15 +1,6 @@
-import algosdk from 'algosdk';
-import { db } from './database.js';
+import { algodClient, indexerClient, db } from './config';
+import * as database from './database.js';
 
-let filename = process.argv[2];
-
-if (typeof filename == 'undefined') {
-    filename = 'tokenWars.db';
-}
-
-const db = database.initDB(filename);
-const algodClient = new algosdk.Algodv2("", "https://testnet-api.voi.nodly.io", 443);
-const indexerClient = new algosdk.Indexer("", "https://testnet-idx.voi.nodly.io", 443);
 const startRound = 35097494;
 
 (async () => {
@@ -45,7 +36,7 @@ const startRound = 35097494;
                 let toWalletRec = await algodClient.accountInformation(toWallet).do();
                 let toBalance = toWalletRec["amount"];
                 
-                database.writeTransaction(db, { transactionId, tokenId, amount, timestamp, fromWallet, toWallet, fromBalance, toBalance, block: currentRound });
+                database.writeTransaction(db, { transaction_id: transactionId, token_id: tokenId, amount, timestamp, from_wallet: fromWallet, to_wallet: toWallet, from_balance: fromBalance, to_balance: toBalance, block: currentRound });
             }
         }
         currentRound++;

@@ -1,16 +1,9 @@
 // initialize sqlite database using argument name as DB file
 // using database.js to create database tables
 import * as database from './database.js';
+import { db } from './config.js';
 
-let filename = process.argv[2];
+await database.createTables(db);
 
-if (typeof filename == 'undefined') {
-    filename = 'tokenWars.db';
-}
-
-const db = database.initDB(filename);
-database.createTables(db);
-
-database.writeToken(db, { tokenId: 6795477, tokenName: "Taco", tokenSymbol: "TACO", tokenDecimals: 0, tokenSupply: 10_000_000_000, tokenType: "VRC200" });
-// database.writeToken(db, { tokenId: 226701642, tokenName:  });
-database.writeLiquidityPool(db, { poolAppId: 26167314, poolAppAccount: "U3VFCRU3WU2CCIZP6Z4ALK3ZGHGPLTJ73Q3GSZK7QXBJUAANK7ORSHDVAA", poolTokenId: 6795477, poolLPTokenId: 26167319, poolType: "VRC200", poolMgr: "NOMADEX" });
+database.writeToken(db, { token_id: 6795477, token_name: "Taco", token_symbol: "TACO", token_decimals: 0, token_supply: 10_000_000_000, token_type: "VRC200" });
+database.writeLiquidityPool(db, { pool_app_id: 26167314, pool_app_account: "U3VFCRU3WU2CCIZP6Z4ALK3ZGHGPLTJ73Q3GSZK7QXBJUAANK7ORSHDVAA", pool_token_id: 6795477, pool_lptoken_id: 26167319, pool_type: "VRC200", pool_mgr: "NOMADEX" });

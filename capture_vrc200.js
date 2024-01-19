@@ -1,16 +1,6 @@
-import algosdk from 'algosdk';
+import { algodClient, indexerClient, db } from './config.js';
 import * as database from './database.js';
 import Contract from 'arc200js';
-
-let filename = process.argv[2];
-
-if (typeof filename == 'undefined') {
-    filename = 'tokenWars.db';
-}
-
-const db = database.initDB(filename);
-const algodClient = new algosdk.Algodv2("", "https://testnet-api.voi.nodly.io", 443);
-const indexerClient = new algosdk.Indexer("", "https://testnet-idx.voi.nodly.io", 443);
 
 (async () => {
     // get list of tokens from tokens table
@@ -40,7 +30,7 @@ const indexerClient = new algosdk.Indexer("", "https://testnet-idx.voi.nodly.io"
             let toWallet = await algodClient.accountInformation(toWalletId).do();
             let toBalance = toWallet["amount"];
 
-            database.writeTransaction(db, { transactionId, tokenId: assetId, amount, fromWallet: fromWalletId, toWallet: toWalletId, fromBalance: fromBalance, toBalance: toBalance, block, timestamp });
+            database.writeTransaction(db, { transaction_id: transactionId, token_id: assetId, amount, from_wallet: fromWalletId, to_wallet: toWalletId, from_balance: fromBalance, to_balance: toBalance, block, timestamp });
 
         }
     }

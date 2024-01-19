@@ -54,19 +54,19 @@ export const createTables = async (db) => {
 export const writeTransaction = (db, transaction) => {
     const stmt = db.prepare(`INSERT OR IGNORE INTO transactions (transaction_id, token_id, amount, from_wallet, to_wallet, from_balance, to_balance, block, timestamp)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
-    stmt.run(transaction.transactionId, transaction.tokenId, transaction.amount, transaction.fromWallet, transaction.toWallet, transaction.fromBalance, transaction.toBalance, transaction.block, transaction.timestamp);
+    stmt.run(transaction.transaction_id, transaction.token_id, transaction.amount, transaction.from_wallet, transaction.to_wallet, transaction.from_balance, transaction.to_balance, transaction.block, transaction.timestamp);
 }
 
 export const writeToken = (db, token) => {
     const stmt = db.prepare(`INSERT OR IGNORE INTO tokens (token_id, token_name, token_symbol, token_decimals, token_supply, token_type)
         VALUES (?, ?, ?, ?, ?, ?)`);
-    stmt.run(token.tokenId, token.tokenName, token.tokenSymbol, token.tokenDecimals, token.tokenSupply, token.tokenType);
+    stmt.run(token.token_id, token.token_name, token.token_symbol, token.token_decimals, token.token_supply, token.token_type);
 }
 
 export const writeLiquidityPool = (db, pool) => {
     const stmt = db.prepare(`INSERT OR IGNORE INTO liquidity_pools (pool_app_id, pool_app_account, pool_token_id, pool_lptoken_id, pool_type, pool_mgr)
         VALUES (?, ?, ?, ?, ?, ?)`);
-    stmt.run(pool.poolAppId, pool.poolAppAccount, pool.poolTokenId, pool.poolLPTokenId, pool.poolType, pool.poolMgr);
+    stmt.run(pool.pool_app_id, pool.pool_app_account, pool.pool_token_id, pool.pool_lptoken_id, pool.pool_type, pool.pool_mgr);
 }
 
 export const writeSwap = (db, swap) => {
