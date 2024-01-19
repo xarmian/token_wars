@@ -4,7 +4,8 @@
   "description": "Voi Token Wars KPI Calculator",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "capture_vrc200": "node capture_vrc200.js",
+    "initdb": "node initdb.js"
   },
   "repository": {
     "type": "git",
@@ -20,10 +21,16 @@
     "blockchain",
     "metric"
   ],
+  "type": "module",
   "author": "xarmian",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/xarmian/token_wars/issues"
   },
-  "homepage": "https://github.com/xarmian/token_wars#readme"
+  "homepage": "https://github.com/xarmian/token_wars#readme",
+  "dependencies": {
+    "algosdk": "^2.7.0",
+    "arc200js": "^2.3.3",
+    "better-sqlite3": "^9.3.0"
+  }
 }
