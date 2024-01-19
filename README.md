@@ -5,9 +5,9 @@
 npm run initdb
 ```
 
-## Add VRC200 Token to Database
+## Add VSA or VRC200 Token to Database
 ```
-npm run add_vrc200 -- <assetId>
+npm run add_token -- <assetId>
 ```
 
 ## Update Transactions for VRC200 Tokens in Database

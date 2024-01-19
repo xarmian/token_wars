@@ -4,7 +4,7 @@
   "description": "Voi Token Wars KPI Calculator",
   "main": "index.js",
   "scripts": {
-    "add_vrc200": "node add_vrc200.js",
+    "add_vrc200": "node add_token.js",
     "capture_vrc200": "node capture_vrc200.js",
     "initdb": "node initdb.js"
   },
