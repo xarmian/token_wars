@@ -25,7 +25,7 @@ export const createTables = async (db) => {
                 token_name TEXT,
                 token_symbol TEXT,
                 token_decimals UNSIGNED INTEGER,
-                token_supply UNSIGNED INTEGER,
+                token_supply TEXT,
                 token_type TEXT
             );`);
 
@@ -60,7 +60,7 @@ export const writeTransaction = (db, transaction) => {
 export const writeToken = (db, token) => {
     const stmt = db.prepare(`INSERT OR IGNORE INTO tokens (token_id, token_name, token_symbol, token_decimals, token_supply, token_type)
         VALUES (?, ?, ?, ?, ?, ?)`);
-    stmt.run(token.token_id, token.token_name, token.token_symbol, token.token_decimals, token.token_supply, token.token_type);
+    stmt.run(token.token_id, token.token_name, token.token_symbol, token.token_decimals, String(token.token_supply), token.token_type);
 }
 
 export const writeLiquidityPool = (db, pool) => {
