@@ -1,5 +1,11 @@
 # Token Wars
 
+## Quick Start
+```
+npm run initdb
+npm run capture_vrc200
+```
+
 ## Initialize Database
 ```
 npm run initdb
